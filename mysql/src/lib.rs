@@ -608,7 +608,7 @@ where
                                 };
                                 let schema = ::std::str::from_utf8(&q[b"USE ".len()..])
                                     .map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e))?;
-                                let schema = schema.trim().trim_end_matches(';').trim_matches('`');
+                                let schema = schema.trim().trim_end_matches(';');
                                 self.shim.on_init(schema, w).await?;
                             } else {
                                 let w = QueryResultWriter::new(
